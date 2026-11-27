@@ -7,9 +7,10 @@
 ## Project Structure
 Keep things simple as it grows:
 - `index.html` — the portal homepage, at the top level
-- `tools/` — one page per tool (`tool-1.html` is a placeholder)
+- `tools/` — one page per tool (`capacity-planner.html` is the first)
 - `css/styles.css` — shared styles, including the light and dark theme colours
 - `js/theme.js` — shared light/dark theme toggle, loaded on every page
+- `js/capacity-planner.js` — the Capacity Planner's calculation and checks
 
 Update this section whenever the structure changes.
 
@@ -30,7 +31,7 @@ A web portal where students and learners try small Production Planning tools.
 ### Phases
 1. **Phase 1: portal plus first tool.** The homepage and exactly one tool, the Capacity Planner. Inputs are machines, cycle time, shifts and hours per shift, and efficiency/downtime %. Outputs are units per day and per week, with a plain-language "How it works" explanation.
    - [x] Step 1: portal homepage with one placeholder card ("Tool 1 — coming soon") that opens and closes via the portal navigation. Done.
-   - [ ] Step 2: replace the placeholder with the real Capacity Planner.
+   - [x] Step 2: replaced the placeholder with the real Capacity Planner (`tools/capacity-planner.html`). Done.
 2. **Phase 2: more tools.** Add further Production Planning tools one at a time, using the steps above.
 3. **Phase 3: polish.** Improve the learning side, for example worked examples and a glossary, based on what visitors need.
 

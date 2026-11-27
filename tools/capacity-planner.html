@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Capacity Planner</title>
+  <link rel="stylesheet" href="../css/styles.css">
+  <script src="../js/theme.js"></script>
+  <script src="../js/capacity-planner.js" defer></script>
+</head>
+<body>
+  <header class="site-header">
+    <a class="site-title" href="../index.html">Production Planning Tools</a>
+    <button class="theme-toggle" id="theme-toggle" type="button">Dark theme</button>
+  </header>
+
+  <main>
+    <a class="back-link" href="../index.html">&larr; Back to all tools</a>
+    <h1>Capacity Planner</h1>
+    <p>
+      Capacity is how many units a production line can make in a given time.
+      Enter your numbers and see how many units to expect per day and per week.
+    </p>
+
+    <div class="planner">
+      <form class="planner-form" id="planner-form" novalidate>
+        <h2>Your numbers</h2>
+
+        <div class="field">
+          <label for="machines">Machines or workstations</label>
+          <input id="machines" type="number" inputmode="numeric" min="1" step="1" value="3" aria-describedby="machines-hint machines-error">
+          <p class="hint" id="machines-hint">How many machines work at the same time, each making the same product.</p>
+          <p class="error" id="machines-error" role="alert"></p>
+        </div>
+
+        <div class="field">
+          <label for="cycle-time">Cycle time per unit</label>
+          <div class="field-row">
+            <input id="cycle-time" type="number" inputmode="decimal" min="0" step="any" value="2" aria-describedby="cycle-time-hint cycle-time-error">
+            <select id="cycle-unit" aria-label="Cycle time unit">
+              <option value="minutes" selected>minutes</option>
+              <option value="seconds">seconds</option>
+            </select>
+          </div>
+          <p class="hint" id="cycle-time-hint">How long one machine takes to make one unit.</p>
+          <p class="error" id="cycle-time-error" role="alert"></p>
+        </div>
+
+        <div class="field">
+          <label for="shifts">Shifts per day</label>
+          <input id="shifts" type="number" inputmode="numeric" min="1" step="1" value="2" aria-describedby="shifts-hint shifts-error">
+          <p class="hint" id="shifts-hint">A shift is one block of working time, for example a morning shift.</p>
+          <p class="error" id="shifts-error" role="alert"></p>
+        </div>
+
+        <div class="field">
+          <label for="hours">Hours per shift</label>
+          <input id="hours" type="number" inputmode="decimal" min="0" step="any" value="8" aria-describedby="hours-hint hours-error">
+          <p class="hint" id="hours-hint">Shifts times hours per shift cannot be more than 24 hours a day.</p>
+          <p class="error" id="hours-error" role="alert"></p>
+        </div>
+
+        <div class="field">
+          <label for="efficiency">Efficiency (%)</label>
+          <input id="efficiency" type="number" inputmode="decimal" min="1" max="100" step="any" value="85" aria-describedby="efficiency-hint efficiency-error">
+          <p class="hint" id="efficiency-hint">How fast the machines really run compared with their ideal speed. 100% means no slowdowns.</p>
+          <p class="error" id="efficiency-error" role="alert"></p>
+        </div>
+
+        <div class="field">
+          <label for="downtime">Downtime (%)</label>
+          <input id="downtime" type="number" inputmode="decimal" min="0" max="99" step="any" value="5" aria-describedby="downtime-hint downtime-error">
+          <p class="hint" id="downtime-hint">The share of working time lost to breakdowns, set-ups and repairs.</p>
+          <p class="error" id="downtime-error" role="alert"></p>
+        </div>
+
+        <div class="field">
+          <label for="days">Working days per week</label>
+          <input id="days" type="number" inputmode="numeric" min="1" max="7" step="1" value="5" aria-describedby="days-hint days-error">
+          <p class="hint" id="days-hint">Used only for the weekly result.</p>
+          <p class="error" id="days-error" role="alert"></p>
+        </div>
+      </form>
+
+      <section class="planner-results" aria-labelledby="results-heading">
+        <h2 id="results-heading">Results</h2>
+        <p class="results-empty" id="results-empty" hidden>Fix the highlighted numbers to see your results.</p>
+
+        <div id="results-body">
+          <div class="result-grid" aria-live="polite">
+            <div class="result">
+              <p class="result-label">Units per day</p>
+              <p class="result-value" id="units-day">&ndash;</p>
+            </div>
+            <div class="result">
+              <p class="result-label">Units per week</p>
+              <p class="result-value" id="units-week">&ndash;</p>
+            </div>
+          </div>
+
+          <h3>How it works</h3>
+          <p>Here are the steps, using your numbers:</p>
+          <ol class="steps" id="steps"></ol>
+          <p class="note">Results are rounded down to whole units, because a half-finished unit cannot be sold.</p>
+        </div>
+      </section>
+    </div>
+  </main>
+</body>
+</html>

@@ -7,6 +7,7 @@
   --card-bg: #f5f5f5;
   --border: #c8c8c8;
   --link: #0b57d0;
+  --error: #b00020;
 }
 
 :root[data-theme="dark"] {
@@ -16,6 +17,7 @@
   --card-bg: #1e1e1e;
   --border: #444444;
   --link: #8ab4f8;
+  --error: #ff8a80;
 }
 
 * {
@@ -105,10 +107,143 @@ main {
   color: var(--muted);
 }
 
+:focus-visible {
+  outline: 2px solid var(--link);
+  outline-offset: 2px;
+}
+
+/* Tool pages: form and results */
+.planner {
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: 1fr;
+  margin-top: 1.5rem;
+}
+
+.planner-form,
+.planner-results {
+  padding: 1rem;
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+}
+
+.planner h2 {
+  margin: 0 0 1rem;
+  font-size: 1.2rem;
+}
+
+.planner h3 {
+  margin: 1.5rem 0 0.5rem;
+  font-size: 1.05rem;
+}
+
+.field {
+  margin-bottom: 1rem;
+}
+
+.field label {
+  display: block;
+  margin-bottom: 0.25rem;
+  font-weight: 600;
+}
+
+.field input,
+.field select {
+  font: inherit;
+  color: var(--text);
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 0.5rem 0.75rem;
+  min-height: 44px;
+  width: 100%;
+}
+
+.field input[aria-invalid="true"] {
+  border-color: var(--error);
+}
+
+.field-row {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.field-row select {
+  width: auto;
+}
+
+.hint {
+  margin: 0.25rem 0 0;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.error {
+  margin: 0.25rem 0 0;
+  color: var(--error);
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.error:empty {
+  display: none;
+}
+
+.result-grid {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: 1fr 1fr;
+}
+
+.result {
+  padding: 0.75rem;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+}
+
+.result-label {
+  margin: 0;
+  color: var(--muted);
+}
+
+.result-value {
+  margin: 0;
+  font-size: 1.75rem;
+  font-weight: 700;
+  overflow-wrap: anywhere;
+}
+
+.steps {
+  padding-left: 1.25rem;
+}
+
+.steps li {
+  margin-bottom: 0.5rem;
+}
+
+.note,
+.results-empty {
+  color: var(--muted);
+}
+
+[hidden] {
+  display: none !important;
+}
+
 /* Tablet and up: two cards per row */
 @media (min-width: 600px) {
   .tool-grid {
     grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Tablet and up: form beside results */
+@media (min-width: 768px) {
+  .planner {
+    grid-template-columns: 1fr 1fr;
+    align-items: start;
   }
 }
 
